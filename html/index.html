@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bulma.min.css">
+        <title>Schnitzeljagd</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="box mt-5">
+                <h1 class="title">Hennings Private Schnitzeljagd</h1>
+                <h2 class="subtitle">Einfach damit er was zutun hat...</h2>
+
+                <div class="content">
+                    <p>
+                        <div class="columns">
+                            <div class="column is-three-quarters">
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                            </div>
+                            <div class="column">
+                                <figure>
+                                    <img style="max-width: 50%" src="images/question.jpg">
+                                </figure>
+                            </div>
+                        </div>
+                    </p>
+
+                    <p>
+                        <ol>
+                            <li>Die erste Zahl hast du bereits erhalten.</li>
+                            <li>Buchstabe unterm Glas</li>
+                            <li>binary encode -> ascii</li>
+                            <li>Zwischen Kinder u. Jugendfarm ev. (erster Hausbau) und du das letzte mal die Stollenschuhe geschnürrt hast und erstem Auto (Autohaus Brandt) und Riede</li>
+                            <li>Programm eval</li>
+                            <li>telegram bot schreiben - cat api</li>
+                            <li>Quelltext gucken</li>
+                            <li>Schablone</li>
+                        </ol> 
+                    </p>
+
+                    <div class="message is-primary">
+                        <div class="message-header">
+                            Lösungswort
+                        </div>
+                        <div class="message-body">
+                            Das Lösungswort lautet...
+                            <div class="field has-addons mt-5">
+                                <p class="control">
+                                    <input id="code" type="password" class="input is-medium">
+                                </p>
+                                <p class="control">
+                                    <a id="btn" class="button is-warning is-medium">Lösen</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                                        
+                </div>
+            </div>
+        </div>
+
+    <script>
+       (() => {
+            document.querySelector("#btn").addEventListener("click", () => {
+                let code = document.querySelector("#code").value;
+                let url = "http://localhost:2030/enter?code=" + code;
+
+                fetch(url).then(res => {
+                    res.text().then(data => {
+                        console.log(data);
+                    }).catch(e => {
+                        console.log(e);
+                    });
+                }).catch(e => {
+                    console.log("error");
+                })
+            });
+       })();
+    </script>
+    </body>
+</html>
