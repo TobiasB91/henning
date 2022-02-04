@@ -12,6 +12,14 @@
                 <h1 class="title">Hennings Private Schnitzeljagd</h1>
                 <h2 class="subtitle">Einfach damit er was zutun hat...</h2>
 
+
+                <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="/">Main</a></li>
+                        <li class="is-active"><a href="#" aria-current="page">${d.stage}</a></li>
+                    </ul>
+                </nav>
+
                 <div class="content">
                     <p>
                         <div class="message is-link">
@@ -85,7 +93,7 @@
        (() => {
             document.querySelector("#btn").addEventListener("click", () => {
                 let code = document.querySelector("#code").value;
-                let url = "http://localhost:2030/check/${d.stage}?code=" + code;
+                let url = "/check/${d.stage}?code=" + code;
 
                 fetch(url).then(res => {
                     res.json().then(data => {
