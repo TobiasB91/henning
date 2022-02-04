@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="css/bulma.min.css">
         <title>Schnitzeljagd</title>
     </head>
@@ -35,23 +36,25 @@
                             <li>telegram bot schreiben - cat api</li>
                             <li>Quelltext gucken</li>
                             <li>Schablone</li>
+                            <li>Leute nach Sachen fragen</li>
+                            <li>optional: streichhölzer mit verschieben-witz</li>
+                            <li>Mitten Marktplatzrätsel, gegenüber von chrisseys bruder....</li>
+                            <li>Irgendwas mit netflix szene, spotify, .....</li>
                         </ol> 
+                    </p>
+
+                    <p style="text-align: center"> 
+                        <a class="button is-info" href="/1">Start</a> 
                     </p>
 
                     <div class="message is-primary">
                         <div class="message-header">
-                            Lösungswort
+                            Bisherige Rätsel
                         </div>
                         <div class="message-body">
-                            Das Lösungswort lautet...
-                            <div class="field has-addons mt-5">
-                                <p class="control">
-                                    <input id="code" type="password" class="input is-medium">
-                                </p>
-                                <p class="control">
-                                    <a id="btn" class="button is-warning is-medium">Lösen</a>
-                                </p>
-                            </div>
+                           <ol>
+                                ${d.puzzleList}
+                           </ol>  
                         </div>
                     </div>
                                         
@@ -59,23 +62,5 @@
             </div>
         </div>
 
-    <script>
-       (() => {
-            document.querySelector("#btn").addEventListener("click", () => {
-                let code = document.querySelector("#code").value;
-                let url = "http://localhost:2030/enter?code=" + code;
-
-                fetch(url).then(res => {
-                    res.text().then(data => {
-                        console.log(data);
-                    }).catch(e => {
-                        console.log(e);
-                    });
-                }).catch(e => {
-                    console.log("error");
-                })
-            });
-       })();
-    </script>
     </body>
 </html>
