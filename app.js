@@ -1,5 +1,4 @@
-const TELEGRAM_TOKEN = "5253701676:AAG4WqkZHp4deWHeivBDiSVbCxRPjP49Ym8";
-const CAT_API_KEY = "d6f22261-825e-47c9-9514-c05ff7e289d2";
+const TELEGRAM_TOKEN = "";
 
 const express = require("express");
 const tl = require("express-tl");
@@ -11,8 +10,6 @@ const cookieParser = require("cookie-parser");
 const https = require("https");
 const TeleBot = require("telebot");
 const bot = new TeleBot(TELEGRAM_TOKEN);
-const FormData = require("form-data");
-const { application } = require("express");
 
 app.engine("tl", tl);
 app.set("views", "./views");
@@ -122,65 +119,55 @@ const BOT_TEXT_PHRASES = [
   "🐭🐭🐭🐭🐭",
   "Ich mag Käse.",
   "Piep Piep 🐭", 
-  "Leicht einzuschüchtern bin ich nicht! 💪🐭"
+  "Leicht einzuschüchtern bin ich nicht! 💪🐭",
+  "Ich bin eine Maus. Hihi.",
+  "Ich hab' Hunger..."
 ];
 
-bot.on(["text", "audio", "voice"], msg => {
+
+const some = (str, substrings) => {
+  for(i in substrings) {
+    if (str.includes(substrings[i])) {
+      return true;
+    }
+  }
+  return false;
+};
+
+bot.on(["text"], msg => {
+  let cheeseCount = Array.from(msg.text).filter(c => c == String.fromCodePoint(129472)).length;
+  let catCount = Array.from(msg.text).filter(c => some(c, ([128049, 128008, 128570, 128571, 128572, 128573, 128574, 128575, 128576 ].map(x => String.fromCodePoint(x))))).length;
+
+  if (catCount > 2) {
+    return msg.reply.text("AHHHH!! Ok, ok, ich sag Dir das Lösungswort, aber lass mir bloß Deine Katze vom Hals! \nDas Lösungswort lautet: \"Käse\".");
+  }
+
+  if (catCount > 0) {
+    return msg.reply.text("Ah! Geh weck mit Deinen Katzen! " + String.fromCodePoint(129327));
+  }
+
+  if (cheeseCount > 4) {
+    return msg.reply.text("Danke! Das ist erst einmal genug für den Winterschlaf *mampf*. Das Lösungswort lautet übrigens: \"Käse\".");
+  }
+
+  if (cheeseCount > 1) {
+    return msg.reply.text("Lecker, mehr!");
+  }
+
+  if (cheeseCount > 0) {
+    return msg.reply.text("Mhhhh, lecker! Hast Du mehr davon?");
+  }
+
   let j = Math.floor(Math.random() * BOT_TEXT_PHRASES.length);
   return msg.reply.text(BOT_TEXT_PHRASES[j]);
 });
 
-bot.on("photo", msg => {
-  bot.getFile(msg.photo[msg.photo.length-1].file_id).then(file => {
-    var stream = fs.createWriteStream(file.file_path);
-    https.get(`https://api.telegram.org/file/bot${TELEGRAM_TOKEN}/${file.file_path}`, res => {
-      res.pipe(stream);
-      stream.on("finish", () => {
-        stream.close(() => {
-          let options = {
-            host: "api.thecatapi.com", 
-            protocol: "https:",
-            path: "/v1/images/upload", 
-            headers: { 
-              "content-type": "multipart/form-data;", 
-              "x-api-key": CAT_API_KEY
-            }
-          };
+bot.on(["audio, voice"], msg => {
+  return msg.reply.text("Liebliche Stimme! 🐭");
+});
 
-          let form = new FormData();
-          form.append("file", fs.createReadStream(file.file_path));
-          form.append("sub_id", "");
-          let req2 = form.submit(options, (err, res2) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-
-            let chunks = [];
-
-            res2.on("data", c => {
-              console.log(c);
-              chunks.push(c);
-            });
-
-            res2.on("end", () => {
-              if (!res2.complete) {
-                console.log("ERR");
-              }
-              console.log(Buffer.concat(chunks).toString());
-              console.log("end");
-            });
-            
-          }); 
-
-        });
-      });
-    }).on("error", err => {
-      console.log(err);
-    });
-  }).catch(err => {
-    console.log(err);
-  });
+bot.on(["photo", "sticker"], msg => {
+  return msg.reply.text("Hübsch.");
 });
 
 bot.start();
