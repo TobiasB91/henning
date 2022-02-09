@@ -1,0 +1,6 @@
+{
+    "stage": 9,
+    "text": "Manchmal kommt man ums Schummeln nicht herum. Und warum dafür nicht den bekanntesten aller digitalen Schummeleien benutzen? <script src=\"https://unpkg.com/konami@1.6.3/konami.js\"></script><script>const konami = new Konami(() => { alert('Epic Gaming'); });</script>",
+    "title": "Player one wins!",
+    "solution": "Epic Gaming"
+}
