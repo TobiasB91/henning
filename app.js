@@ -9,7 +9,7 @@ const fs = require("fs");
 const cookieParser = require("cookie-parser");
 const https = require("https");
 const TeleBot = require("telebot");
-const bot = new TeleBot(TELEGRAM_TOKEN);
+//const bot = new TeleBot(TELEGRAM_TOKEN);
 
 app.engine("tl", tl);
 app.set("views", "./views");
@@ -87,6 +87,12 @@ app.get("/", (req, res) => {
 
 app.get("/:stage", (req, res) => {
   let stage = req.params.stage;  
+
+  if (stage == 100) { //TODO
+    res.render("win");
+    return;
+  }
+
   fs.readFile("./content/" + stage + ".json", "utf8", (err, data) => {
     if (err) {
       console.log(err);
@@ -134,6 +140,7 @@ const some = (str, substrings) => {
   return false;
 };
 
+/*
 bot.on(["text"], msg => {
   let cheeseCount = Array.from(msg.text).filter(c => c == String.fromCodePoint(129472)).length;
   let catCount = Array.from(msg.text).filter(c => some(c, ([128049, 128008, 128570, 128571, 128572, 128573, 128574, 128575, 128576 ].map(x => String.fromCodePoint(x))))).length;
@@ -171,5 +178,5 @@ bot.on(["photo", "sticker"], msg => {
 });
 
 bot.start();
-
+*/
 const server = app.listen(2030);
