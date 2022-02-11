@@ -1,6 +1,6 @@
 {    
     "stage": 14,
     "title": "Schiebung",
-    "text": "<div id='fifteen'></div>         <script>        var setup={             puzzle_fifteen:{                diff: 10,   size:[512,640], grid:[3,4],  fill:true,   number:false,  art:{  url:\"images/porto.jpg\", ratio:false },  time:\"0.1\",   style:\"border-radius:12px;\", emptySlot:[1],                  keyBoard:true,                    gamePad:true    }        }        </script><script src=\"js/fifteen_puzzle.js\"></script>" ,    
+    "text": "<div id='fifteen'></div>         <script>        var setup={             puzzle_fifteen:{                diff: 250,   size:[512,640], grid:[3,4],  fill:true,   number:false,  art:{  url:\"images/porto.jpg\", ratio:false },  time:\"0.1\",   style:\"border-radius:12px;\", emptySlot:[1],                  keyBoard:true,                    gamePad:true    }        }        </script><script src=\"js/fifteen_puzzle.js\"></script>" ,    
     "solution": "Porto"
 }
