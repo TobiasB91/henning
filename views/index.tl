@@ -36,25 +36,7 @@
                             </div>
                         </div>
                     </p>
-
-                    <p>
-                        <ol>
-                            <li>Die erste Zahl hast du bereits erhalten. - Done</li>
-                            <li>binary encode -> ascii - Done</li>
-                            <li>Quelltext gucken - Done</li>
-                            <li>Schablone - Done</li>
-                            <li>Irgendwas mit netflix szene, spotify, ..... - Done</li>
-                            <li>Mitten Marktplatzrätsel, gegenüber von chrisseys bruder.... - Done</li>
-                            <li>Zwischen Kinder u. Jugendfarm ev. (erster Hausbau) und du das letzte mal die Stollenschuhe geschnürrt hast und erstem Auto (Autohaus Brandt) und Riede - Done</li>
-                            <li>telegram bot schreiben - cat api - Done</li>
-
-                            <li>Programm eval</li>
-                            <li>Leute nach Sachen fragen</li>
-                            <li>optional: streichhölzer mit verschieben-witz</li>
-                            <li>musik</i>
-                        </ol> 
-                    </p>
-
+                    
                     <p style="text-align: center"> 
                         <a class="button is-info" href="/1">Start</a> 
                     </p>
