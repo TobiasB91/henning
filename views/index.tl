@@ -56,5 +56,12 @@
             </div>
         </div>
 
+        <script>
+            document.querySelector("img").addEventListener("click", e => {
+                e.target.parentNode.appendChild(document.createElement("p").appendChild(document.createTextNode("Henning")));
+                e.target.remove();
+            });
+        </script>
+
     </body>
 </html>
